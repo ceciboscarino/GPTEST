@@ -20,3 +20,6 @@ export const peopleSplice = createSlice({
         },
       
 }}) ;
+
+
+export const { addPeople } = peopleSplice.actions;

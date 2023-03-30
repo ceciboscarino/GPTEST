@@ -1,16 +1,9 @@
-import React, { useEffect } from 'react';
-import { DataGrid, GridRenderCellParams } from '@mui/x-data-grid';
 import { People } from '@/data/people';
-import { useState } from 'react';
-import { Checkbox } from '@mui/material';
-import { Person } from '@/models';
-import { addFavorites } from '@/redux/states/favorites';
-import { useDispatch, useSelector } from 'react-redux';
 import { addPeople } from '@/redux/states/people';
-export interface HomeProps { }
-import store from '@/redux/store';
-import { AppStore } from '@/redux/store';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { PeopleTable } from './components';
+export interface HomeProps { }
 
 const Home: React.FC<HomeProps> = () => {
 	const dispatch = useDispatch();

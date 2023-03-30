@@ -10,7 +10,7 @@ const initialState : Person[]= [];
 
 
 
-export const peopleSplice = createSlice({
+export const peopleSlice = createSlice({
     name: 'people',
     initialState: getLocalStorage(LocalStorageTypes.PEOPLE) ? JSON.parse(getLocalStorage(LocalStorageTypes.PEOPLE) as string) : initialState,
     reducers: {
@@ -22,4 +22,5 @@ export const peopleSplice = createSlice({
 }}) ;
 
 
-export const { addPeople } = peopleSplice.actions;
+export const { addPeople } = peopleSlice.actions;
+export default peopleSlice.reducer;

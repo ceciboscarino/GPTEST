@@ -1,9 +1,11 @@
+import { People } from '@/data/people';
 import { Person } from '@/models';
-import { AppStore } from '@/redux';
+import { AppStore } from '@/redux/store';
 import { addFavorites } from '@/redux/states/favorites';
 import { Checkbox } from '@mui/material';
 import { DataGrid, GridRenderCellParams } from '@mui/x-data-grid';
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 export interface PeopleTableProps { }
 
 const PeopleTable: React.FC<PeopleTableProps> = () => {
@@ -13,7 +15,7 @@ const PeopleTable: React.FC<PeopleTableProps> = () => {
 	const statePeople = useSelector((store: AppStore) => store.people);
 	const findPerson = (person: Person) => !!selectedPeople.find(p => p.id === person.id)
 	const filterPerson = (person: Person) => selectedPeople.filter(p => p.id !== person.id)
-
+	const dispatch = useDispatch();
 	const handleChange = (person: Person) => {
 
 		const filteredPeople = findPerson(person) ? filterPerson(person) : [...selectedPeople, person]
@@ -53,11 +55,17 @@ const PeopleTable: React.FC<PeopleTableProps> = () => {
 			headerName: 'Company',
 			flex: 1,
 			renderCell: (params: GridRenderCellParams) => <>{params.value}</>
+		} ,
+		{
+			field: 'levelOfHappiness',
+			headerName: 'Level of Happiness',
+			flex: 1,
+			renderCell: (params: GridRenderCellParams) => <>{params.value}</>
 		}
 	];
 	return <DataGrid
 
-		rows={statePeople}
+		rows={People}
 		columns={columns}
 		disableColumnSelector
 		disableRowSelectionOnClick
@@ -75,11 +83,4 @@ const PeopleTable: React.FC<PeopleTableProps> = () => {
 };
 
 export default PeopleTable;
-function useSelector(arg0: (store: AppStore) => Person[]) {
-	throw new Error('Function not implemented.');
-}
-
-function dispatch(arg0: { payload: any; type: "favorites/addFavorites"; }) {
-	throw new Error('Function not implemented.');
-}
 

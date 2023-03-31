@@ -12,7 +12,7 @@ const initialState : Person[]= [];
 
 export const favoritesSlice = createSlice({
     name: 'favorites',
-    initialState: getLocalStorage(LocalStorageTypes.FAVORITES) ? JSON.parse(getLocalStorage(LocalStorageTypes.FAVORITES) as string) : initialState,
+    initialState: initialState,
     reducers: {
         addFavorites: (state, action) => {
             setLocalStorage(LocalStorageTypes.FAVORITES, state)
